@@ -2,7 +2,7 @@ import os
 
 
 # The function receives a path to a folder and returns all files starting with
-# the letter sequence "deep" in that folder
+# the letter sequence "deep" in that folder.
 def prefix_deep(path):
     files = []
     string = "deep"
