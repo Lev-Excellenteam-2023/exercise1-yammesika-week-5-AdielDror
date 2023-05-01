@@ -1,29 +1,42 @@
-# The function extracts the secret messages from the logo file
+"""Extracts the secret messages from the logo file.
+
+This file contains the following functions:
+
+    * is_lowercase - return true if the character is lowercase,
+      false otherwise
+    * is_exclamation - return true if the character is an exclamation
+      mark (!), false otherwise
+    * messages - the main function of the script
+"""
+
+
 def messages():
-    with open('C:/Users/Adiel/PycharmProjects/excellentTeam/logo.jpg', 'rb') as f:  # opening a binary file
+    with open('logo.jpg', 'rb') as f:
         secret = ""
         while True:
-            char = f.read(1)  # Read from the file character by character
-            if not char:  # If we have reached the end of the file
+            char = f.read(1)
+            if not char:
                 break
-            char_in_hex = char.hex()
-            an_integer = int(char_in_hex, 16)
+            if is_lowercase(char):
+                secret += chr(int(char.hex(), 16))
+            elif is_exclamation(char):
+                secret += chr(int(char.hex(), 16))
 
-            if 0x61 <= an_integer <= 0x7A:  # Checking if the character is lowercase
-                secret += chr(an_integer)
-
-            elif an_integer == 0x21:  # Checking if the character is an exclamation mark (!)
-                secret += chr(an_integer)
-                # Checking if the length of the string is greater than 6 characters, including the exclamation mark
                 if len(secret) >= 6:
                     yield secret
                     secret = ""
-
             else:
                 secret = ""
 
-    f.close()  # Close the file
+
+def is_lowercase(char: bytes) -> bool:
+    return b'a' <= char <= b'z'
 
 
-for message in messages():
-    print(message)
+def is_exclamation(char: bytes) -> bool:
+    return char == b'!'
+
+
+if __name__ == '__main__':
+    for message in messages():
+        print(message)
