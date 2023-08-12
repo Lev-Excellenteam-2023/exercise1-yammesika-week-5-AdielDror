@@ -3,17 +3,17 @@
 def join(*lists, sep='-'):
     if not lists:  # If no lists were received at all
         return None
-    lst = [sep]
-    res = []
+    separated = [sep]
+    result_list = []
     # Concatenate the lists into one list with the 'sep' parameter between them
-    for list1 in lists:
-        res += list1 + lst
-    res.pop()
-    # print(res)
-    return res
+    for current_list in lists:
+        result_list += current_list + separated
+    result_list.pop()
+    return result_list
 
 
-join([1, 2], [8], [9, 5, 6], sep='@')
-join([1, 2], [8], [9, 5, 6])
-join([1])
-join()
+if __name__ == '__main__':
+    print(join([1, 2], [8], [9, 5, 6], sep='@'))
+    print(join([1, 2], [8], [9, 5, 6]))
+    print(join([1]))
+    print(join())
