@@ -6,10 +6,10 @@ def get_recipe_price(prices, optionals=[], **ingredients):
     final_price = 0
     for ingredient in ingredients:
         final_price += prices[ingredient] * ingredients.get(ingredient) // 100
-    print(final_price)
     return final_price
 
 
-get_recipe_price({'chocolate': 18, 'milk': 8}, chocolate=200, milk=100)
-get_recipe_price({'chocolate': 18, 'milk': 8}, optionals=['milk'], chocolate=300)
-get_recipe_price({})
+if __name__ == '__main__':
+    print(get_recipe_price({'chocolate': 18, 'milk': 8}, chocolate=200, milk=100))
+    print(get_recipe_price({'chocolate': 18, 'milk': 8}, optionals=['milk'], chocolate=300))
+    print(get_recipe_price({}))
